@@ -65,13 +65,45 @@ export default async function MortgagePage({ searchParams }: { searchParams: SP 
 
   return (
     <main className="mx-auto max-w-5xl">
-      <h1 className="mb-6 text-2xl font-semibold">Mortgage amortization</h1>
+      <h1 className="mb-2 text-2xl font-semibold">Mortgage amortization</h1>
+      <p className="mb-6 text-sm text-gray-600">
+        Break down a fixed-rate mortgage payment-by-payment: how much goes to interest, how much to principal, and when you finish paying it off.
+      </p>
 
       <form className="mb-8 grid gap-3 sm:grid-cols-4" method="get">
-        <NumberInput label="Principal" name="principal" defaultValue={principal} suffix="$" min={0} />
-        <NumberInput label="Annual rate" name="rate" defaultValue={ratePct} suffix="%" step="0.001" min={0} />
-        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr" min={1} max={40} />
-        <SelectInput label="Frequency" name="frequency" defaultValue={frequency} options={FREQ_OPTIONS} />
+        <NumberInput
+          label="Principal"
+          name="principal"
+          defaultValue={principal}
+          suffix="$"
+          min={0}
+          help="Loan amount after the down payment — what you're actually borrowing from the lender."
+        />
+        <NumberInput
+          label="Annual rate"
+          name="rate"
+          defaultValue={ratePct}
+          suffix="%"
+          step="0.001"
+          min={0}
+          help="Annual mortgage rate as quoted by the lender. Canadian mortgages compound semi-annually by regulation, not monthly."
+        />
+        <NumberInput
+          label="Amortization"
+          name="years"
+          defaultValue={years}
+          suffix="yr"
+          min={1}
+          max={40}
+          help="Total years to fully pay off the loan. Longer terms mean lower payments but much more interest."
+        />
+        <SelectInput
+          label="Frequency"
+          name="frequency"
+          defaultValue={frequency}
+          options={FREQ_OPTIONS}
+          help="How often you pay. Accelerated bi-weekly / weekly pays one extra monthly payment per year and can shave years off the mortgage."
+        />
         <div className="sm:col-span-4">
           <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
             Calculate

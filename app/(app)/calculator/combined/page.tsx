@@ -64,18 +64,30 @@ export default async function CombinedPage({ searchParams }: { searchParams: SP 
 
   return (
     <main className="mx-auto max-w-6xl">
-      <h1 className="mb-6 text-2xl font-semibold">Mortgage + HELOC (readvanceable)</h1>
+      <h1 className="mb-2 text-2xl font-semibold">Mortgage + HELOC (readvanceable)</h1>
+      <p className="mb-6 text-sm text-gray-600">
+        A readvanceable mortgage ties a mortgage and a HELOC to the same property. As you pay down the mortgage principal, the HELOC limit grows by the same amount — re-borrowable instantly. This projects both balances plus net worth over time.
+      </p>
 
       <form className="mb-8 grid gap-3 sm:grid-cols-4" method="get">
-        <NumberInput label="Mortgage principal" name="principal" defaultValue={principal} suffix="$" />
-        <NumberInput label="Mortgage rate" name="mrate" defaultValue={mRatePct} suffix="%" step="0.001" />
-        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr" />
-        <NumberInput label="Home value" name="home" defaultValue={homeValue} suffix="$" />
-        <NumberInput label="HELOC rate" name="hrate" defaultValue={hRatePct} suffix="%" step="0.01" />
-        <NumberInput label="HELOC starting balance" name="helocStart" defaultValue={helocStart} suffix="$" required={false} />
-        <NumberInput label="HELOC monthly draw" name="helocDraw" defaultValue={helocDraw} suffix="$" required={false} />
-        <NumberInput label="Home appreciation" name="appr" defaultValue={apprPct} suffix="%/yr" step="0.1" required={false} />
-        <NumberInput label="Months to project" name="months" defaultValue={months} suffix="mo" />
+        <NumberInput label="Mortgage principal" name="principal" defaultValue={principal} suffix="$"
+          help="The mortgage loan amount (after down payment)." />
+        <NumberInput label="Mortgage rate" name="mrate" defaultValue={mRatePct} suffix="%" step="0.001"
+          help="Annual mortgage interest rate." />
+        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr"
+          help="Years to pay off the mortgage in full." />
+        <NumberInput label="Home value" name="home" defaultValue={homeValue} suffix="$"
+          help="Current market value of the home — used for net-worth tracking. Defaults to mortgage principal if you haven't entered one." />
+        <NumberInput label="HELOC rate" name="hrate" defaultValue={hRatePct} suffix="%" step="0.01"
+          help="HELOC interest rate (usually higher than the mortgage rate — prime + margin)." />
+        <NumberInput label="HELOC starting balance" name="helocStart" defaultValue={helocStart} suffix="$" required={false}
+          help="Current balance on the HELOC. 0 if unused." />
+        <NumberInput label="HELOC monthly draw" name="helocDraw" defaultValue={helocDraw} suffix="$" required={false}
+          help="Amount drawn from the HELOC each month (e.g. 500 = you spend $500/mo from the line). 0 = no new draws." />
+        <NumberInput label="Home appreciation" name="appr" defaultValue={apprPct} suffix="%/yr" step="0.1" required={false}
+          help="Expected annual home price growth. Canadian long-term average is ~3%, varies by city." />
+        <NumberInput label="Months to project" name="months" defaultValue={months} suffix="mo"
+          help="How many months to simulate. 300 = 25 years." />
         <div className="sm:col-span-4">
           <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
             Calculate

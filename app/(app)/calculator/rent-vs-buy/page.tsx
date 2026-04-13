@@ -65,21 +65,36 @@ export default async function RentVsBuyPage({ searchParams }: { searchParams: SP
 
   return (
     <main className="mx-auto max-w-6xl">
-      <h1 className="mb-6 text-2xl font-semibold">Rent vs buy</h1>
+      <h1 className="mb-2 text-2xl font-semibold">Rent vs buy</h1>
+      <p className="mb-6 text-sm text-gray-600">
+        Compares net worth N years from now under two scenarios: buying (mortgage + taxes + upkeep + home appreciation) versus renting and investing the would-be down payment plus any monthly savings.
+      </p>
 
       <form className="mb-8 grid gap-3 sm:grid-cols-4" method="get">
-        <NumberInput label="Home price" name="price" defaultValue={homePrice} suffix="$" />
-        <NumberInput label="Down payment" name="down" defaultValue={downPayment} suffix="$" />
-        <NumberInput label="Mortgage rate" name="mrate" defaultValue={mRatePct} suffix="%" step="0.001" />
-        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr" />
-        <NumberInput label="Property tax" name="tax" defaultValue={taxPct} suffix="%/yr" step="0.01" />
-        <NumberInput label="Maintenance" name="maint" defaultValue={maintPct} suffix="%/yr" step="0.01" />
-        <NumberInput label="Home appreciation" name="appr" defaultValue={apprPct} suffix="%/yr" step="0.1" />
-        <NumberInput label="Selling costs" name="sell" defaultValue={sellPct} suffix="%" step="0.1" />
-        <NumberInput label="Monthly rent" name="rent" defaultValue={rent} suffix="$" />
-        <NumberInput label="Rent inflation" name="rentInfl" defaultValue={rentInflPct} suffix="%/yr" step="0.1" />
-        <NumberInput label="Investment return" name="inv" defaultValue={invPct} suffix="%/yr" step="0.1" />
-        <NumberInput label="Years to compare" name="compare" defaultValue={yearsCompare} suffix="yr" min={1} max={50} />
+        <NumberInput label="Home price" name="price" defaultValue={homePrice} suffix="$"
+          help="Purchase price of the home." />
+        <NumberInput label="Down payment" name="down" defaultValue={downPayment} suffix="$"
+          help="Cash down — also used as the starting investment balance in the rent scenario." />
+        <NumberInput label="Mortgage rate" name="mrate" defaultValue={mRatePct} suffix="%" step="0.001"
+          help="Annual mortgage rate." />
+        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr"
+          help="Years to pay off the mortgage." />
+        <NumberInput label="Property tax" name="tax" defaultValue={taxPct} suffix="%/yr" step="0.01"
+          help="Annual property tax as a % of home value. Canadian cities typically 0.6–1.5%." />
+        <NumberInput label="Maintenance" name="maint" defaultValue={maintPct} suffix="%/yr" step="0.01"
+          help="Upkeep, insurance, repairs — rule of thumb is ~1% of home value per year." />
+        <NumberInput label="Home appreciation" name="appr" defaultValue={apprPct} suffix="%/yr" step="0.1"
+          help="Expected annual home price growth." />
+        <NumberInput label="Selling costs" name="sell" defaultValue={sellPct} suffix="%" step="0.1"
+          help="Realtor + legal + transfer fees when you sell. Canada typically ~5%." />
+        <NumberInput label="Monthly rent" name="rent" defaultValue={rent} suffix="$"
+          help="Current monthly rent for a comparable home." />
+        <NumberInput label="Rent inflation" name="rentInfl" defaultValue={rentInflPct} suffix="%/yr" step="0.1"
+          help="Expected annual rent increase." />
+        <NumberInput label="Investment return" name="inv" defaultValue={invPct} suffix="%/yr" step="0.1"
+          help="Annual return on the down payment + monthly surplus invested under the rent scenario." />
+        <NumberInput label="Years to compare" name="compare" defaultValue={yearsCompare} suffix="yr" min={1} max={50}
+          help="How far forward to run the comparison." />
         <div className="sm:col-span-4">
           <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
             Calculate

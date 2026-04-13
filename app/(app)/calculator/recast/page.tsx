@@ -48,11 +48,16 @@ export default async function RecastPage({ searchParams }: { searchParams: SP })
       </p>
 
       <form className="mb-8 grid gap-3 sm:grid-cols-5" method="get">
-        <NumberInput label="Principal" name="principal" defaultValue={principal} suffix="$" />
-        <NumberInput label="Rate" name="rate" defaultValue={ratePct} suffix="%" step="0.001" />
-        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr" />
-        <NumberInput label="Lump sum" name="lump" defaultValue={lumpSum} suffix="$" />
-        <NumberInput label="After month" name="when" defaultValue={monthsBefore} suffix="mo" min={1} />
+        <NumberInput label="Principal" name="principal" defaultValue={principal} suffix="$"
+          help="Original mortgage amount." />
+        <NumberInput label="Rate" name="rate" defaultValue={ratePct} suffix="%" step="0.001"
+          help="Mortgage interest rate — stays the same through the recast." />
+        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr"
+          help="Original amortization length. The recast keeps the remaining term unchanged." />
+        <NumberInput label="Lump sum" name="lump" defaultValue={lumpSum} suffix="$"
+          help="Extra payment applied directly to principal at the recast date. Bigger lump sum = bigger monthly-payment drop + bigger interest savings." />
+        <NumberInput label="After month" name="when" defaultValue={monthsBefore} suffix="mo" min={1}
+          help="How many regular monthly payments before the lump sum hits. Example: 60 = recast after 5 years." />
         <div className="sm:col-span-5">
           <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
             Calculate

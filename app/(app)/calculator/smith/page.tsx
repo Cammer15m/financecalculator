@@ -75,12 +75,18 @@ export default async function SmithPage({ searchParams }: { searchParams: SP }) 
       </p>
 
       <form className="mb-8 grid gap-3 sm:grid-cols-4" method="get">
-        <NumberInput label="Mortgage principal" name="principal" defaultValue={principal} suffix="$" />
-        <NumberInput label="Mortgage rate" name="mrate" defaultValue={mRatePct} suffix="%" step="0.001" />
-        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr" />
-        <NumberInput label="HELOC rate" name="hrate" defaultValue={hRatePct} suffix="%" step="0.01" />
-        <NumberInput label="Investment return" name="inv" defaultValue={invPct} suffix="%/yr" step="0.1" />
-        <NumberInput label="Marginal tax rate" name="tax" defaultValue={taxPct} suffix="%" step="0.1" />
+        <NumberInput label="Mortgage principal" name="principal" defaultValue={principal} suffix="$"
+          help="Current mortgage balance at the start of the strategy." />
+        <NumberInput label="Mortgage rate" name="mrate" defaultValue={mRatePct} suffix="%" step="0.001"
+          help="Annual mortgage rate (Canadian semi-annual compounding)." />
+        <NumberInput label="Amortization" name="years" defaultValue={years} suffix="yr"
+          help="Years remaining on the mortgage." />
+        <NumberInput label="HELOC rate" name="hrate" defaultValue={hRatePct} suffix="%" step="0.01"
+          help="HELOC interest rate — usually prime + margin, higher than mortgage." />
+        <NumberInput label="Investment return" name="inv" defaultValue={invPct} suffix="%/yr" step="0.1"
+          help="Expected annual return on the re-borrowed-and-invested money. 7% is the rough long-term stock-market average; use lower for conservative modelling." />
+        <NumberInput label="Marginal tax rate" name="tax" defaultValue={taxPct} suffix="%" step="0.1"
+          help="Your top tax bracket. HELOC interest is tax-deductible when the money is invested, so your refund = interest × marginal rate." />
         <SelectInput
           label="Tax refund target"
           name="refund"
@@ -89,10 +95,14 @@ export default async function SmithPage({ searchParams }: { searchParams: SP }) 
             { value: "heloc", label: "Pay down HELOC" },
             { value: "investments", label: "Reinvest in portfolio" },
           ]}
+          help="What to do with the annual tax refund: pay down HELOC (more conservative, reduces debt faster) or reinvest (more aggressive, compounds returns)."
         />
-        <NumberInput label="Home value" name="home" defaultValue={homeValue} suffix="$" />
-        <NumberInput label="Home appreciation" name="appr" defaultValue={apprPct} suffix="%/yr" step="0.1" required={false} />
-        <NumberInput label="Months to project" name="months" defaultValue={months} suffix="mo" />
+        <NumberInput label="Home value" name="home" defaultValue={homeValue} suffix="$"
+          help="Current home value — used for net-worth tracking." />
+        <NumberInput label="Home appreciation" name="appr" defaultValue={apprPct} suffix="%/yr" step="0.1" required={false}
+          help="Expected annual home price growth." />
+        <NumberInput label="Months to project" name="months" defaultValue={months} suffix="mo"
+          help="How many months to simulate. 300 = 25 years." />
         <div className="sm:col-span-4">
           <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
             Calculate

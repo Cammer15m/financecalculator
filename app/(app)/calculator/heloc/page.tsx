@@ -54,14 +54,54 @@ export default async function HelocPage({ searchParams }: { searchParams: SP }) 
 
   return (
     <main className="mx-auto max-w-5xl">
-      <h1 className="mb-6 text-2xl font-semibold">HELOC standalone</h1>
+      <h1 className="mb-2 text-2xl font-semibold">HELOC standalone</h1>
+      <p className="mb-6 text-sm text-gray-600">
+        A HELOC is a revolving line of credit secured by your home. Interest-only by default, variable rate, and you only pay interest on what you&apos;ve drawn. This projects balance and interest over time.
+      </p>
 
       <form className="mb-8 grid gap-3 sm:grid-cols-5" method="get">
-        <NumberInput label="Limit" name="limit" defaultValue={limit} suffix="$" min={0} />
-        <NumberInput label="Starting balance" name="balance" defaultValue={startingBalance} suffix="$" min={0} />
-        <NumberInput label="Annual rate" name="rate" defaultValue={ratePct} suffix="%" step="0.01" min={0} />
-        <NumberInput label="Monthly payment (0 = interest-only)" name="payment" defaultValue={monthlyPayment} suffix="$" min={0} />
-        <NumberInput label="Months to project" name="months" defaultValue={months} suffix="mo" min={1} max={600} />
+        <NumberInput
+          label="Limit"
+          name="limit"
+          defaultValue={limit}
+          suffix="$"
+          min={0}
+          help="Maximum you can borrow on the line of credit. Canadian HELOCs are typically capped at 65% of home value (80% combined with the mortgage)."
+        />
+        <NumberInput
+          label="Starting balance"
+          name="balance"
+          defaultValue={startingBalance}
+          suffix="$"
+          min={0}
+          help="How much you currently owe on the HELOC. Enter 0 if you haven't drawn anything yet."
+        />
+        <NumberInput
+          label="Annual rate"
+          name="rate"
+          defaultValue={ratePct}
+          suffix="%"
+          step="0.01"
+          min={0}
+          help="HELOC interest rate — typically prime + a margin (e.g. prime + 0.5%). Floats with the prime rate."
+        />
+        <NumberInput
+          label="Monthly payment (0 = interest-only)"
+          name="payment"
+          defaultValue={monthlyPayment}
+          suffix="$"
+          min={0}
+          help="Fixed amount you plan to pay each month. Leave at 0 to pay only the minimum (interest-only) — balance never goes down."
+        />
+        <NumberInput
+          label="Months to project"
+          name="months"
+          defaultValue={months}
+          suffix="mo"
+          min={1}
+          max={600}
+          help="How many months of history to simulate. 240 = 20 years."
+        />
         <div className="sm:col-span-5">
           <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
             Calculate
