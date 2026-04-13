@@ -10,6 +10,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           <a href="/dashboard" className="hover:underline">
             Dashboard
           </a>
+          <a href="/calculators" className="hover:underline">
+            Calculators
+          </a>
           {user.role === "admin" && (
             <a href="/admin/users" className="hover:underline">
               Admin
