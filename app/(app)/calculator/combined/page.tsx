@@ -88,10 +88,16 @@ export default async function CombinedPage({ searchParams }: { searchParams: SP 
           help="Expected annual home price growth. Canadian long-term average is ~3%, varies by city." />
         <NumberInput label="Months to project" name="months" defaultValue={months} suffix="mo"
           help="How many months to simulate. 300 = 25 years." />
-        <div className="sm:col-span-4">
-          <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
-            Calculate
+        <div className="flex flex-wrap items-center gap-3 sm:col-span-4">
+          <button
+            type="submit"
+            className="rounded-md bg-black px-6 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+          >
+            Calculate →
           </button>
+          <span className="text-xs text-gray-500">
+            Results update in the sections below.
+          </span>
         </div>
       </form>
 

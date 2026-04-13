@@ -95,10 +95,16 @@ export default async function RentVsBuyPage({ searchParams }: { searchParams: SP
           help="Annual return on the down payment + monthly surplus invested under the rent scenario." />
         <NumberInput label="Years to compare" name="compare" defaultValue={yearsCompare} suffix="yr" min={1} max={50}
           help="How far forward to run the comparison." />
-        <div className="sm:col-span-4">
-          <button className="rounded bg-black px-4 py-2 text-sm text-white" type="submit">
-            Calculate
+        <div className="flex flex-wrap items-center gap-3 sm:col-span-4">
+          <button
+            type="submit"
+            className="rounded-md bg-black px-6 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+          >
+            Calculate →
           </button>
+          <span className="text-xs text-gray-500">
+            Results update in the sections below.
+          </span>
         </div>
       </form>
 
